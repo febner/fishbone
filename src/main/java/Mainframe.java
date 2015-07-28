@@ -181,7 +181,7 @@ public class Mainframe extends JFrame {
 	 * Prints/draws the current table
 	 * (GUI Operation).
 	 *
-	 * @param model
+	 * @param DefaultTableModel model
 	 */
 	private void print(final DefaultTableModel model) {
 		try {

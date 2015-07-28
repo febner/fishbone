@@ -1,6 +1,5 @@
 import java.io.IOException;
 
-
 public class PlayGround {
 
 	public static void main(String[] args) throws IOException {

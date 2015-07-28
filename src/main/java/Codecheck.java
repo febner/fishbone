@@ -38,7 +38,8 @@ public class Codecheck {
 
 		Elements prodInfo = doc.getElementsByClass("product-info-item");
 
-		if (prodInfo.size() > 1 && prodInfo.get(1).text().length() > 20 && prodInfo.get(1).text().startsWith("Zusatzinformationen")) {
+		if (prodInfo.size() > 1 && prodInfo.get(1).text().length() > 20
+				&& prodInfo.get(1).text().startsWith("Zusatzinformationen")) {
 			info = prodInfo.get(1).text().substring(19);
 		}
 		return new Groceries(barcode, name, 1, picSource, info);

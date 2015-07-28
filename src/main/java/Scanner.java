@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.apache.derby.tools.sysinfo;
-
 public class Scanner {
 
 	public static void main(String[] args) throws IOException, SQLException {
@@ -11,7 +9,7 @@ public class Scanner {
 		DataBase freezer = new DataBase();
 
 		while (true) {
-			System.out.println("Geben Sie einen Barcode ein: "+ "x" + freezer.getMult());
+			System.out.println("Geben Sie einen Barcode ein: " + "x" + freezer.getMult());
 			String input = In.readWord();
 
 			String barcode = interpretInput(input, freezer);
@@ -23,18 +21,16 @@ public class Scanner {
 				} else {
 					Out.println("Online Data Acquisition");
 					Groceries groc = Codecheck.loadInformation(barcode);
-					if (groc == null) { 
-						
-						
+					if (groc == null) {
+
 						System.out.println("Offline Codeerfassung deaktiviert!");
 						/*
-						System.out.println("");
-						System.out.println("Geben Sie den Namen des Produktes ein:");
-						In.readLine();
-						String name = In.readLine();
-						groc = new Groceries(barcode, name, 1, "", "");
-						*/
-						
+						 * System.out.println(""); System.out.println(
+						 * "Geben Sie den Namen des Produktes ein:");
+						 * In.readLine(); String name = In.readLine(); groc =
+						 * new Groceries(barcode, name, 1, "", "");
+						 */
+
 					}
 					freezer.insert(groc);
 				}

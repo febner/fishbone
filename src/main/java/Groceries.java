@@ -17,8 +17,8 @@ public class Groceries extends Goods {
 	@Override
 	public void print() {
 
-		Out.println(String.format("%-20s %-10s %-10d %-10s %-10s", trimToSize(name, 20), trimToSize(info, 10), count, trimToSize(picSource, 30),
-				trimToSize(ISBN, 10)));
+		Out.println(String.format("%-20s %-10s %-10d %-10s %-10s", trimToSize(name, 20), trimToSize(info, 10), count,
+				trimToSize(picSource, 30), trimToSize(ISBN, 10)));
 
 	}
 

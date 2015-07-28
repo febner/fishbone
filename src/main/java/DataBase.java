@@ -1,17 +1,17 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class DataBase {
 
 	// SETTINGS FOR DERBY
-	 private String dbURL = "jdbc:derby:/home/richard/MyDB;create=true";
-	 private String user = "admin";
-	 private String password = "password";
+	private String dbURL = "jdbc:derby:/home/richard/MyDB;create=true";
+	private String user = "admin";
+	private String password = "password";
 
 	// SETTINGS FOR DERBY Raspi
 	// private String dbURL = "jdbc:derby:/home/pi/MyDB;create=true";
@@ -19,9 +19,9 @@ public class DataBase {
 	// private String password = "password";
 
 	// SETTINGS FOR MySQL XAMPP
-//	private String dbURL = "jdbc:mysql://127.0.0.1:3306/";
-//	private String user = "root";
-//	private String password = "";
+	// private String dbURL = "jdbc:mysql://127.0.0.1:3306/";
+	// private String user = "root";
+	// private String password = "";
 
 	// SETTINGS FOR Networked MySQL RaspberryPi
 	// private String dbURL = "jdbc:mysql://193.171.36.49:3306/BARCODESCANLIB";
@@ -54,15 +54,18 @@ public class DataBase {
 			con = getDBConnection();
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM BARCODESCANLIB.BARCODES");
-			System.out.println(String.format("%-15s %-40s %-3s %-25s %-60s", "Barcode", "Name", "#", "Beschreibung", "Bild"));
-			System.out.println("--------------------------------------------------------------------------------------------");
+			System.out.println(
+					String.format("%-15s %-40s %-3s %-25s %-60s", "Barcode", "Name", "#", "Beschreibung", "Bild"));
+			System.out.println(
+					"--------------------------------------------------------------------------------------------");
 			while (rs.next()) {
 				String ISBN = rs.getString("BARCODE");
 				String name = rs.getString("NAME");
 				int count = rs.getInt("COUNT");
 				String info = rs.getString("INFO");
 				String picture = rs.getString("PICTURE");
-				System.out.println(String.format("%-15s %-40s %-3d %-25s %-60s", ISBN, trimToSize(name, 39), count, trimToSize(info, 24), picture));
+				System.out.println(String.format("%-15s %-40s %-3d %-25s %-60s", ISBN, trimToSize(name, 39), count,
+						trimToSize(info, 24), picture));
 			}
 
 		} catch (SQLException e) {
@@ -85,8 +88,10 @@ public class DataBase {
 			con = getDBConnection();
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM BARCODESCANLIB.BARCODES");
-			System.out.println(String.format("%-15s %-40s %-3s %-25s %-60s", "Barcode", "Name", "#", "Beschreibung", "Bild"));
-			System.out.println("--------------------------------------------------------------------------------------------");
+			System.out.println(
+					String.format("%-15s %-40s %-3s %-25s %-60s", "Barcode", "Name", "#", "Beschreibung", "Bild"));
+			System.out.println(
+					"--------------------------------------------------------------------------------------------");
 			while (rs.next()) {
 
 				String ISBN = rs.getString("BARCODE");
@@ -101,7 +106,8 @@ public class DataBase {
 				vector.add(count);
 				matrix.add(vector);
 
-				System.out.println(String.format("%-15s %-40s %-3d %-25s %-60s", ISBN, trimToSize(name, 39), count, trimToSize(info, 24), picture));
+				System.out.println(String.format("%-15s %-40s %-3d %-25s %-60s", ISBN, trimToSize(name, 39), count,
+						trimToSize(info, 24), picture));
 			}
 
 		} catch (SQLException e) {
@@ -182,7 +188,8 @@ public class DataBase {
 				try {
 					con = getDBConnection();
 					stmt = con.createStatement();
-					String query = String.format("INSERT INTO BARCODESCANLIB.BARCODES(barcode, name,count,info, picture) VALUES('%s','%s',%d,'%s','%s')",
+					String query = String.format(
+							"INSERT INTO BARCODESCANLIB.BARCODES(barcode, name,count,info, picture) VALUES('%s','%s',%d,'%s','%s')",
 							groc.getISBN(), groc.getName(), groc.getCount(), groc.getInfo255(), groc.getPicSource());
 
 					stmt.executeUpdate(query);
@@ -200,8 +207,8 @@ public class DataBase {
 						con = getDBConnection();
 						stmt = con.createStatement();
 						String query = String.format(
-								"INSERT INTO BARCODESCANLIB.BARCODESOFFL(barcode, name,count,info, picture) VALUES('%s','%s',1,'%s','%s')", groc.getISBN(),
-								groc.getName(), groc.getInfo255(), groc.getPicSource());
+								"INSERT INTO BARCODESCANLIB.BARCODESOFFL(barcode, name,count,info, picture) VALUES('%s','%s',1,'%s','%s')",
+								groc.getISBN(), groc.getName(), groc.getInfo255(), groc.getPicSource());
 
 						stmt.executeUpdate(query);
 

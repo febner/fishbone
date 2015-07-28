@@ -1,4 +1,6 @@
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -19,8 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
 public class Mainframe extends JFrame {
 
@@ -37,6 +37,7 @@ public class Mainframe extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					Mainframe frame = new Mainframe();
@@ -68,6 +69,7 @@ public class Mainframe extends JFrame {
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					freezer.deleteAll();
@@ -82,6 +84,7 @@ public class Mainframe extends JFrame {
 
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Close");
 				System.exit(0);
@@ -97,25 +100,27 @@ public class Mainframe extends JFrame {
 		 */
 		contentPane.add(buttonPane, BorderLayout.SOUTH);
 		buttonPane.setLayout(new GridLayout(0, 2, 0, 0));
-		
-				JButton btnPrint = new JButton("Print");
-				btnPrint.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						print(model);
-					}
-				});
-				btnPrint.setBounds(315, 117, 68, 25);
-				buttonPane.add(btnPrint);
+
+		JButton btnPrint = new JButton("Print");
+		btnPrint.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				print(model);
+			}
+		});
+		btnPrint.setBounds(315, 117, 68, 25);
+		buttonPane.add(btnPrint);
 		buttonPane.add(btnClear);
-		
-				JToggleButton tglbtnInout = new JToggleButton("In/Out");
-				tglbtnInout.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						changeMode();
-					}
-				});
-				tglbtnInout.setBounds(315, 194, 97, 25);
-				buttonPane.add(tglbtnInout);
+
+		JToggleButton tglbtnInout = new JToggleButton("In/Out");
+		tglbtnInout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeMode();
+			}
+		});
+		tglbtnInout.setBounds(315, 194, 97, 25);
+		buttonPane.add(tglbtnInout);
 		buttonPane.add(btnClose);
 
 		table = new JTable(model);

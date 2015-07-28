@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -22,18 +25,30 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Mainframe starts the application with a GUI
+ * Different to the Class Scanner which starts it as CLI
+ */
 public class Mainframe extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textBarcode;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
 	private DataBase freezer = new DataBase();
+	
+	/** Mode whether things are added or subtracted. 
+	 * 1 - add
+	 * 0 - subtract
+	 * */
 	private int mode = 1;
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 
@@ -146,6 +161,12 @@ public class Mainframe extends JFrame {
 		print(model);
 	}
 
+	/**
+	 * Checks if String is numeric.
+	 *
+	 * @param String input 
+	 * @return true, if it is numeric
+	 */
 	private static boolean isNumeric(String input) {
 		for (int i = 0; i < input.length(); i++) {
 			if (input.charAt(i) < 48 || input.charAt(i) > 57) {
@@ -156,6 +177,12 @@ public class Mainframe extends JFrame {
 
 	}
 
+	/**
+	 * Prints/draws the current table
+	 * (GUI Operation).
+	 *
+	 * @param model
+	 */
 	private void print(final DefaultTableModel model) {
 		try {
 			// freezer.printTable();
@@ -173,6 +200,9 @@ public class Mainframe extends JFrame {
 		}
 	}
 
+	/** 
+	 * Method for inserting goods into the freezer
+	 */
 	private void insert() {
 
 		String barcode = textBarcode.getText();
@@ -208,6 +238,9 @@ public class Mainframe extends JFrame {
 
 	}
 
+	/**
+	 * Change mode.
+	 */
 	private void changeMode() {
 		if (mode == 1)
 			mode = 0;
@@ -217,8 +250,12 @@ public class Mainframe extends JFrame {
 		freezer.setMode(mode);
 	}
 
+	/**
+	 * Delete all data in the TableModel. 
+	 * @param DefaultTableModel model
+	 */
 	private static void deleteAllData(DefaultTableModel model) {
-
+ 
 		int size = model.getRowCount();
 		for (int i = size - 1; i >= 0; i--) {
 			model.removeRow(i);

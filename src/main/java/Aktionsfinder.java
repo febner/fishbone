@@ -17,8 +17,8 @@ public class Aktionsfinder {
 		Elements el = doc.getElementsByClass("headline");
 
 		return 0;
-		//Diese Seite muss noch inkludiert werden, zZ funktioniert 
-		//der Aufruf nicht, da GET/SET nicht verwendet wird.
+		//Diese Funktion muss noch inkludiert werden. Aktionsfinder verwendet 
+		//wsl set um Suche zu bearbeiten.
 	}
 
 }

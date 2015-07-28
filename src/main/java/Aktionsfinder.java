@@ -6,6 +6,10 @@ import org.jsoup.select.Elements;
 
 public class Aktionsfinder {
 
+	//This feature is not included due to problems with the set method (php)
+	//used for sending the search queries
+	
+	
 	public Aktionsfinder() {
 
 	}
@@ -17,8 +21,7 @@ public class Aktionsfinder {
 		Elements el = doc.getElementsByClass("headline");
 
 		return 0;
-		//Diese Funktion muss noch inkludiert werden. Aktionsfinder verwendet 
-		//wsl set um Suche zu bearbeiten.
+		
 	}
 
 }

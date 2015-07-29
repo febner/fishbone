@@ -1,10 +1,15 @@
+package at.jku.esh.fishbone;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
+import at.jku.esh.fishbone.goods.Groceries;
 
 public class DataBase {
 
@@ -78,9 +83,9 @@ public class DataBase {
 
 	}
 
-	public ArrayList<Vector> dataVector() throws SQLException {
+	public List<List<String>> dataVector() throws SQLException {
 
-		ArrayList<Vector> matrix = new ArrayList<Vector>();
+		List<List<String>> matrix = new ArrayList<List<String>>();
 
 		Statement stmt = null;
 		Connection con = null;
@@ -96,11 +101,11 @@ public class DataBase {
 
 				String ISBN = rs.getString("BARCODE");
 				String name = rs.getString("NAME");
-				int count = rs.getInt("COUNT");
+				String count = rs.getString("COUNT");
 				String info = rs.getString("INFO");
 				String picture = rs.getString("PICTURE");
 
-				Vector vector = new Vector(3);
+				Vector<String> vector = new Vector<>(3);
 				vector.add(ISBN);
 				vector.add(name);
 				vector.add(count);

@@ -1,7 +1,15 @@
+package at.jku.esh.fishbone;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class Scanner {
+import at.jku.esh.fishbone.config.FishboneProperties;
+import at.jku.esh.fishbone.goods.Groceries;
+
+public class Fishbone {
+
+	private static final String PROPERTIES_FILE = "reporter.properties";
+	private static final FishboneProperties PROPERTIES = new FishboneProperties(PROPERTIES_FILE);
 
 	public static void main(String[] args) throws IOException, SQLException {
 

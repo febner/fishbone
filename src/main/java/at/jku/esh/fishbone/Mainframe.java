@@ -1,6 +1,5 @@
-/*
- * 
- */
+package at.jku.esh.fishbone;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -10,8 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -25,29 +24,32 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-// TODO: Auto-generated Javadoc
+import at.jku.esh.fishbone.goods.Groceries;
+
 /**
- * The Class Mainframe starts the application with a GUI
- * Different to the Class Scanner which starts it as CLI
+ * The Class Mainframe starts the application with a GUI Different to the Class
+ * Scanner which starts it as CLI
  */
 public class Mainframe extends JFrame {
+
+	private static final long serialVersionUID = 8692758592046378161L;
 
 	private JPanel contentPane;
 	private JTextField textBarcode;
 	private JTable table;
 
 	private DataBase freezer = new DataBase();
-	
-	/** Mode whether things are added or subtracted. 
-	 * 1 - add
-	 * 0 - subtract
-	 * */
+
+	/**
+	 * Mode whether things are added or subtracted. 1 - add 0 - subtract
+	 */
 	private int mode = 1;
 
 	/**
 	 * The main method.
 	 *
-	 * @param args the arguments
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -164,7 +166,8 @@ public class Mainframe extends JFrame {
 	/**
 	 * Checks if String is numeric.
 	 *
-	 * @param String input 
+	 * @param String
+	 *            input
 	 * @return true, if it is numeric
 	 */
 	private static boolean isNumeric(String input) {
@@ -178,29 +181,28 @@ public class Mainframe extends JFrame {
 	}
 
 	/**
-	 * Prints/draws the current table
-	 * (GUI Operation).
+	 * Prints/draws the current table (GUI Operation).
 	 *
-	 * @param DefaultTableModel model
+	 * @param DefaultTableModel
+	 *            model
 	 */
 	private void print(final DefaultTableModel model) {
 		try {
 			// freezer.printTable();
 			deleteAllData(model);
-			ArrayList<Vector> data = freezer.dataVector();
-			Iterator itr = data.iterator();
+			List<List<String>> data = freezer.dataVector();
+			Iterator<List<String>> itr = data.iterator();
 
 			while (itr.hasNext()) {
-				Object element = itr.next();
-				model.addRow((Vector) element);
+				Vector<String> element = (Vector<String>) itr.next();
+				model.addRow(element);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
 
-	/** 
+	/**
 	 * Method for inserting goods into the freezer
 	 */
 	private void insert() {
@@ -251,11 +253,13 @@ public class Mainframe extends JFrame {
 	}
 
 	/**
-	 * Delete all data in the TableModel. 
-	 * @param DefaultTableModel model
+	 * Delete all data in the TableModel.
+	 * 
+	 * @param DefaultTableModel
+	 *            model
 	 */
 	private static void deleteAllData(DefaultTableModel model) {
- 
+
 		int size = model.getRowCount();
 		for (int i = size - 1; i >= 0; i--) {
 			model.removeRow(i);

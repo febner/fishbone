@@ -1,3 +1,5 @@
+package at.jku.esh.fishbone;
+
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 

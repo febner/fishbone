@@ -1,16 +1,17 @@
+package at.jku.esh.fishbone;
+
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class Aktionsfinder {
+public class DiscountHunter {
 
-	//This feature is not included due to problems with the set method (php)
-	//used for sending the search queries
-	
-	
-	public Aktionsfinder() {
+	// This feature is not included due to problems with the set method (php)
+	// used for sending the search queries
+
+	public DiscountHunter() {
 
 	}
 
@@ -20,8 +21,10 @@ public class Aktionsfinder {
 
 		Elements el = doc.getElementsByClass("headline");
 
+		System.out.println(el);
+
 		return 0;
-		
+
 	}
 
 }

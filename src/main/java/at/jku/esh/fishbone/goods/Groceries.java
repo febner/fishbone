@@ -1,4 +1,9 @@
-public class Groceries extends Goods {
+package at.jku.esh.fishbone.goods;
+
+import at.jku.esh.fishbone.Goods;
+import at.jku.esh.fishbone.Out;
+
+public class Groceries implements Goods {
 
 	private String name;
 	private String picSource;

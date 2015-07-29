@@ -47,12 +47,16 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.2</version>
 		</dependency>
-		
-		<!-- <dependency> -->
-		<!-- <groupId>ch.qos.logback</groupId> -->
-		<!-- <artifactId>logback-classic</artifactId> -->
-		<!-- <version>1.0.11</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.11</version>
+		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>org.projectlombok</groupId> -->
 		<!-- <artifactId>lombok</artifactId> -->
@@ -75,6 +79,59 @@
 		<!-- <artifactId>miglayout</artifactId> -->
 		<!-- <version>3.7.4</version> -->
 		<!-- </dependency> -->
-		
+
 	</dependencies>
+	<build>
+		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/config/local</directory>
+			</resource>
+		</resources>
+	</build>
+	<profiles>
+		<profile>
+			<id>release-package</id>
+			<activation>
+				<property>
+					<name>env</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>appassembler-maven-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>assemble</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<platforms>
+								<platform>
+									windows
+								</platform>
+							</platforms>
+							<assembleDirectory>${project.build.directory}/${project.artifactId}-${env}</assembleDirectory>
+							<repositoryLayout>flat</repositoryLayout>
+							<configurationDirectory>config</configurationDirectory>
+							<configurationSourceDirectory>src/main/config/${env}</configurationSourceDirectory>
+							<copyConfigurationDirectory>true</copyConfigurationDirectory>
+							<programs>
+								<program>
+									<mainClass>com.nts.automation.reporter.core.Reporter</mainClass>
+									<id>${project.artifactId}-${env}</id>
+								</program>
+							</programs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

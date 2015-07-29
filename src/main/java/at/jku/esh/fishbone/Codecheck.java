@@ -9,8 +9,24 @@ import org.jsoup.select.Elements;
 
 import at.jku.esh.fishbone.goods.Groceries;
 
-public class Codecheck {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Codecheck.
+ */
+// TODO: needs rework. 
+/*
+ * Sometimes the photographs are not hosten on codecheck. This results in corrupted links. 
+ */
 
+public class Codecheck {
+	
+	/**
+	 * Load information.
+	 *
+	 * @param barcode the barcode
+	 * @return the groceries
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static Groceries loadInformation(String barcode) throws IOException {
 
 		String url = String.format("http://www.codecheck.info/product.search?q=%s&OK=Suchen", barcode);

@@ -8,8 +8,10 @@ import org.jsoup.select.Elements;
 
 public class DiscountHunter {
 
-	// This feature is not included due to problems with the set method (php)
-	// used for sending the search queries
+	/*
+	 * 	This feature is not included due to problems with the set method (php)
+	 * used for sending the search queries
+	 */
 
 	public DiscountHunter() {
 

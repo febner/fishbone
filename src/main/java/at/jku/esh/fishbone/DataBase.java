@@ -11,11 +11,25 @@ import java.util.Vector;
 
 import at.jku.esh.fishbone.goods.Groceries;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DataBase.
+ */
 public class DataBase {
 
+	/** The db settings
+	 * currently these settings are hardcoded
+	 * . 
+	 * */
+	// TODO: include some kind of configuration
+	
 	// SETTINGS FOR DERBY
 	private String dbURL = "jdbc:derby:/home/richard/MyDB;create=true";
+	
+	/** The user. */
 	private String user = "admin";
+	
+	/** The password. */
 	private String password = "password";
 
 	// SETTINGS FOR DERBY Raspi
@@ -33,9 +47,15 @@ public class DataBase {
 	// private String user = "dbuser";
 	// private String password = "password";
 
+	/** The mode. */
 	private int mode = 1; // 1 - Increase | 0 - Decrease
+	
+	/** The mult. */
 	private int mult = 1; // Multiplier for products
 
+	/**
+	 * Instantiates a new data base.
+	 */
 	public DataBase() {
 
 		// try {
@@ -49,7 +69,9 @@ public class DataBase {
 	}
 
 	/**
-	 * Prints the table
+	 * Prints the table to the console.
+	 *
+	 * @throws SQLException the SQL exception
 	 */
 	public void printTable() throws SQLException {
 
@@ -83,6 +105,13 @@ public class DataBase {
 
 	}
 
+		/**
+		 * Data vector.
+		 *
+		 * @return the list
+		 * @throws SQLException the SQL exception
+		 */
+	
 	public List<List<String>> dataVector() throws SQLException {
 
 		List<List<String>> matrix = new ArrayList<List<String>>();
@@ -111,7 +140,7 @@ public class DataBase {
 				vector.add(count);
 				matrix.add(vector);
 
-				System.out.println(String.format("%-15s %-40s %-3d %-25s %-60s", ISBN, trimToSize(name, 39), count,
+				System.out.println(String.format("%-15s %-40s %-3s %-25s %-60s", ISBN, trimToSize(name, 39), count,
 						trimToSize(info, 24), picture));
 			}
 
@@ -126,7 +155,11 @@ public class DataBase {
 	}
 
 	/**
+	 * Exists.
+	 *
+	 * @param barcode the barcode
 	 * @return True if Barcode is already in the SQL Database Table
+	 * @throws SQLException the SQL exception
 	 */
 	public boolean exists(String barcode) throws SQLException {
 		Statement stmt = null;
@@ -156,9 +189,9 @@ public class DataBase {
 	}
 
 	/**
-	 * Deletes all entries in the table
-	 * 
-	 * @throws SQLException
+	 * Deletes all entries in the table.
+	 *
+	 * @throws SQLException the SQL exception
 	 */
 	public void deleteAll() throws SQLException {
 		Statement stmt = null;
@@ -179,10 +212,10 @@ public class DataBase {
 	}
 
 	/**
-	 * Inserts a Grocerie groc
-	 * 
-	 * @param groc
-	 * @throws SQLException
+	 * Inserts a Grocerie groc.
+	 *
+	 * @param groc the groc
+	 * @throws SQLException the SQL exception
 	 */
 	public void insert(Groceries groc) throws SQLException {
 		if (groc != null) {
@@ -269,7 +302,8 @@ public class DataBase {
 	}
 
 	/**
-	 * 
+	 * Gets the DB connection.
+	 *
 	 * @return Database Connection
 	 */
 	private Connection getDBConnection() {
@@ -284,12 +318,24 @@ public class DataBase {
 		return null;
 	}
 
+	/**
+	 * Sets the mode.
+	 *
+	 * @param mode the new mode
+	 */
 	public void setMode(int mode) {
 		if (mode == 1 || mode == 0) {
 			this.mode = mode;
 		}
 	}
 
+	/**
+	 * Trim to size.
+	 *
+	 * @param s the s
+	 * @param size the size
+	 * @return the string
+	 */
 	private static String trimToSize(String s, int size) {
 
 		if (s.length() >= size) {
@@ -300,11 +346,11 @@ public class DataBase {
 	}
 
 	/**
-	 * Checks for offline availability of the product
-	 * 
-	 * @param barcode
-	 * @return
-	 * @throws SQLException
+	 * Checks for offline availability of the product.
+	 *
+	 * @param barcode the barcode
+	 * @return true, if is offline avail
+	 * @throws SQLException the SQL exception
 	 */
 	public boolean isOfflineAvail(String barcode) throws SQLException {
 
@@ -334,6 +380,12 @@ public class DataBase {
 		return flag;
 	}
 
+	/**
+	 * Offline insert copies the product from the offline data source into the fridge.
+	 *
+	 * @param barcode the barcode
+	 * @throws SQLException the SQL exception
+	 */
 	public void offlineInsert(String barcode) throws SQLException {
 
 		Statement stmt = null;
@@ -368,15 +420,18 @@ public class DataBase {
 	}
 
 	/**
-	 * @return the mult
+	 * Gets the multiplier of this product.
+	 *
+	 * @return the multiplier
 	 */
 	public int getMult() {
 		return mult;
 	}
 
 	/**
-	 * @param mult
-	 *            the mult to set
+	 * Sets the multiplier.
+	 *
+	 * @param mult            the mult to set
 	 */
 	public void setMult(int mult) {
 		this.mult = mult;

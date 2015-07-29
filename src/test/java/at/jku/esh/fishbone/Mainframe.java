@@ -27,8 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import at.jku.esh.fishbone.goods.Groceries;
 
 /**
- * The Class Mainframe starts the application with a GUI Different to the Class
- * Scanner which starts it as CLI
+ * The class Mainframe starts the application with a GUI, different to the Class
+ * Fishbone which starts it as CLI
  */
 public class Mainframe extends JFrame {
 

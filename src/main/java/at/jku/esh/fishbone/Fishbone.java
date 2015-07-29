@@ -31,7 +31,7 @@ public class Fishbone {
 					Groceries groc = Codecheck.loadInformation(barcode);
 					if (groc == null) {
 
-						System.out.println("Offline Codeerfassung deaktiviert!");
+						System.out.println("Manuelle offline Codeerfassung deaktiviert!");
 						/*
 						 * System.out.println(""); System.out.println(
 						 * "Geben Sie den Namen des Produktes ein:");

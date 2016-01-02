@@ -8,8 +8,8 @@ import at.jku.esh.fishbone.goods.Groceries;
 
 public class Fishbone {
 
-	private static final String PROPERTIES_FILE = "reporter.properties";
-	private static final FishboneProperties PROPERTIES = new FishboneProperties(PROPERTIES_FILE);
+//	private static final String PROPERTIES_FILE = "reporter.properties";
+//	private static final FishboneProperties PROPERTIES = new FishboneProperties(PROPERTIES_FILE);
 
 	public static void main(String[] args) throws IOException, SQLException {
 

@@ -17,20 +17,19 @@ import at.jku.esh.fishbone.goods.Groceries;
  */
 public class DataBase {
 
-	/** The db settings
-	 * currently these settings are hardcoded
-	 * . 
-	 * */
+	/**
+	 * The db settings currently these settings are hardcoded
+	 */
 	// TODO: include some kind of configuration
+
+//	  SETTINGS FOR DERBY
+	 private String dbURL = "jdbc:derby:/home/richard/MyDB;create=true";
 	
-	// SETTINGS FOR DERBY
-	private String dbURL = "jdbc:derby:/home/richard/MyDB;create=true";
+	 /** The user. */
+	 private String user = "admin";
 	
-	/** The user. */
-	private String user = "admin";
-	
-	/** The password. */
-	private String password = "password";
+	 /** The password. */
+	 private String password = "password";
 
 	// SETTINGS FOR DERBY Raspi
 	// private String dbURL = "jdbc:derby:/home/pi/MyDB;create=true";
@@ -38,9 +37,9 @@ public class DataBase {
 	// private String password = "password";
 
 	// SETTINGS FOR MySQL XAMPP
-	// private String dbURL = "jdbc:mysql://127.0.0.1:3306/";
-	// private String user = "root";
-	// private String password = "";
+//	private String dbURL = "jdbc:mysql://127.0.0.1:3306/";
+//	private String user = "root";
+//	private String password = "";
 
 	// SETTINGS FOR Networked MySQL RaspberryPi
 	// private String dbURL = "jdbc:mysql://193.171.36.49:3306/BARCODESCANLIB";
@@ -49,7 +48,7 @@ public class DataBase {
 
 	/** The mode. */
 	private int mode = 1; // 1 - Increase | 0 - Decrease
-	
+
 	/** The mult. */
 	private int mult = 1; // Multiplier for products
 
@@ -71,7 +70,8 @@ public class DataBase {
 	/**
 	 * Prints the table to the console.
 	 *
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public void printTable() throws SQLException {
 
@@ -105,13 +105,14 @@ public class DataBase {
 
 	}
 
-		/**
-		 * Data vector.
-		 *
-		 * @return the list
-		 * @throws SQLException the SQL exception
-		 */
-	
+	/**
+	 * Data vector.
+	 *
+	 * @return the list
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+
 	public List<List<String>> dataVector() throws SQLException {
 
 		List<List<String>> matrix = new ArrayList<List<String>>();
@@ -157,9 +158,11 @@ public class DataBase {
 	/**
 	 * Exists.
 	 *
-	 * @param barcode the barcode
+	 * @param barcode
+	 *            the barcode
 	 * @return True if Barcode is already in the SQL Database Table
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public boolean exists(String barcode) throws SQLException {
 		Statement stmt = null;
@@ -191,7 +194,8 @@ public class DataBase {
 	/**
 	 * Deletes all entries in the table.
 	 *
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public void deleteAll() throws SQLException {
 		Statement stmt = null;
@@ -214,8 +218,10 @@ public class DataBase {
 	/**
 	 * Inserts a Grocerie groc.
 	 *
-	 * @param groc the groc
-	 * @throws SQLException the SQL exception
+	 * @param groc
+	 *            the groc
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public void insert(Groceries groc) throws SQLException {
 		if (groc != null) {
@@ -321,7 +327,8 @@ public class DataBase {
 	/**
 	 * Sets the mode.
 	 *
-	 * @param mode the new mode
+	 * @param mode
+	 *            the new mode
 	 */
 	public void setMode(int mode) {
 		if (mode == 1 || mode == 0) {
@@ -332,8 +339,10 @@ public class DataBase {
 	/**
 	 * Trim to size.
 	 *
-	 * @param s the s
-	 * @param size the size
+	 * @param s
+	 *            the s
+	 * @param size
+	 *            the size
 	 * @return the string
 	 */
 	private static String trimToSize(String s, int size) {
@@ -348,9 +357,11 @@ public class DataBase {
 	/**
 	 * Checks for offline availability of the product.
 	 *
-	 * @param barcode the barcode
+	 * @param barcode
+	 *            the barcode
 	 * @return true, if is offline avail
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public boolean isOfflineAvail(String barcode) throws SQLException {
 
@@ -381,10 +392,13 @@ public class DataBase {
 	}
 
 	/**
-	 * Offline insert copies the product from the offline data source into the fridge.
+	 * Offline insert copies the product from the offline data source into the
+	 * fridge.
 	 *
-	 * @param barcode the barcode
-	 * @throws SQLException the SQL exception
+	 * @param barcode
+	 *            the barcode
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public void offlineInsert(String barcode) throws SQLException {
 
@@ -431,7 +445,8 @@ public class DataBase {
 	/**
 	 * Sets the multiplier.
 	 *
-	 * @param mult            the mult to set
+	 * @param mult
+	 *            the mult to set
 	 */
 	public void setMult(int mult) {
 		this.mult = mult;
